@@ -41,7 +41,7 @@ export default function Login() {
         if (isFormValid) {
             try {
                 // Make an API request to get user data based on email and full name
-                const response = await axios.get(`http://localhost:3000/users?email=${formData.email}&fullName=${formData.fullName}`);
+                const response = await axios.get(`http://localhost:3000/users?email=${formData.email}&Password=${formData.Password}`);
                 
                 // Check if a user with the provided email and full name exists
                 if (response.data.length > 0) {

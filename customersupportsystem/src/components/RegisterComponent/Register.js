@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import {  Link } from 'react-router-dom';
@@ -45,14 +46,12 @@ export default function Register() {
         if (!formData.address.trim()) {
             errors.address = 'Address is required';
         }
+
         if (!formData.dob.trim()) {
             errors.dob = 'Date of Birth is required';
         }
 
-        if (!formData.EmployementStatus.trim()) {
-            errors.EmployementStatus = 'EmployementStatus is required';
-        }
-
+        
         if (!formData.EmployerDetails.trim()) {
             errors.EmployerDetails = 'EmployerDetails is required';
         }
@@ -65,6 +64,9 @@ export default function Register() {
         if (!formData.ConfirmPassword.trim()) {
             errors.ConfirmPassword = 'ConfirmPassword is required';
         }
+        else if (formData.Password !== formData.ConfirmPassword) {
+            errors.ConfirmPassword = 'Confirm Password does not match Password';
+        }
 
         setErrors(errors);
 
@@ -72,8 +74,8 @@ export default function Register() {
         return Object.keys(errors).length === 0;
     };
     
-    // const generateAccountNumber = () => {
-    //     return Math.floor(Math.random() * 1000000000); // 9-digit account number
+    // const generateCustomerId = () => {
+    //     return Math.floor(Math.random() * 1000000000); 
     // };
 
     const handleSubmit = async (e) => {
@@ -82,12 +84,12 @@ export default function Register() {
 
         if (isFormValid) {
             // Generate account number
-            // const accountNumber = generateAccountNumber();
+            // const CustomerId = generateCustomerId();
 
             // Create a new user object with the form data
             const user = {
                 ...formData,
-                // accountNumber,
+                // CustomerId,
                 // balance: 0,
             };
 
@@ -99,7 +101,7 @@ export default function Register() {
                     contactNumber: '',
                     address: '',
                     dob: '',
-                    EmployementStatus: '',
+                    EmployementStatus: 'employed',
                     EmployerDetails: '',
                     PANCard: '',
                     Password: '',
@@ -118,12 +120,7 @@ export default function Register() {
         <div className="container">
             <div className='row'>
                 <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-                    <h2 className="text-center"style={{color:"purple"}}>Register</h2>
-                    {/* {registrationSuccess && (
-                        <div className="alert alert-success">
-                            Registration Successful. Your account number is {formData.accountNumber}.
-                        </div>
-                    )} */}
+                    <h2 className="text-center" style={{color:"purple"}}>Register</h2>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="mb-3">
                             <label htmlFor="fullName" className="form-label">Full Name</label>
@@ -189,32 +186,31 @@ export default function Register() {
                         <div className="mb-3">
                             <label htmlFor="EmployementStatus" className="form-label">EmployementStatus</label>
                             <select
-                                id="aEmployementStatus"
-                                placeholder='select your EmployementStatus'
+                                id="EmployementStatus"
+                                placeholder='select your Employement Status'
                                 name="EmployementStatus"
-                                value={formData.EmployementStatus}
+                                value={formData.accountType}
                                 onChange={(e) => handleInputChange(e)}
                                 className="form-select"
                             >
-                                <option value="Employed">Employed</option>
+                                <option value="employed">employed</option>
                                 <option value="Unemployed">Unemployed</option>
                             </select>
                         </div>
-                        <div className='mb-3'>
+                        <div className="mb-3">
                             <label htmlFor="EmployerDetails" className="form-label">EmployerDetails</label>
                             <input
                                 type="text"
                                 className='form-control'
                                 id="EmployerDetails"
-                                placeholder='enter your EmployerDetails'
+                                placeholder='enter your Employer Name'
                                 name="EmployerDetails"
                                 value={formData.EmployerDetails}
                                 onChange={(e) => handleInputChange(e)} />
                             {errors.EmployerDetails && <span className="error">{errors.EmployerDetails}</span>}
                         </div>
-
-                        <div className='mb-3'>
-                            <label htmlFor="PANCard" className="form-label">PAN Card</label>
+                        <div className="mb3">
+                        <label htmlFor="PANCard" className="form-label">PANCard</label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -225,8 +221,8 @@ export default function Register() {
                                 onChange={(e) => handleInputChange(e)} />
                             {errors.PANCard && <span className="error">{errors.PANCard}</span>}
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="Password" className="form-label">Password</label>
+                        <div className="mb3">
+                        <label htmlFor="Password" className="form-label">Password</label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -237,21 +233,21 @@ export default function Register() {
                                 onChange={(e) => handleInputChange(e)} />
                             {errors.Password && <span className="error">{errors.Password}</span>}
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="ConfirmPassword" className="form-label">ConfirmPassword</label>
+                        <div className="mb3">
+                        <label htmlFor="ConfirmPassword" className="form-label">ConfirmPassword</label>
                             <input
                                 type="text"
                                 className='form-control'
                                 id="ConfirmPassword"
-                                placeholder='enter your Password'
+                                placeholder='enter your ConfirmPassword'
                                 name="ConfirmPassword"
                                 value={formData.ConfirmPassword}
                                 onChange={(e) => handleInputChange(e)} />
                             {errors.ConfirmPassword && <span className="error">{errors.ConfirmPassword}</span>}
                         </div>
-                    
-                        <button type="submit" className="btn btn-primary"style={{backgroundColor:"purple"}}>Register</button>
-                        {/* <Link className='btn btn-danger mx-2' to="/">Cancel</Link>
+
+                        <button type="submit" className="btn btn-primary" style={{backgroundColor:"purple"}}>Register</button>
+                       {/* <Link className='btn btn-danger mx-2' to="/">Cancel</Link>
                         <Link className='btn btn-success mx-2' to="/login">Login</Link> */}
                     </form>
                 </div>
@@ -259,4 +255,3 @@ export default function Register() {
         </div>
     );
 }
-
