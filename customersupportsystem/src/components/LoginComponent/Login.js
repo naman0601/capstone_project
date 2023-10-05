@@ -6,7 +6,7 @@ export default function Login() {
     let navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
-        Password: '',
+        password: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -24,8 +24,8 @@ export default function Login() {
             errors.email = 'email is required';
         }
 
-        if (!formData.Password.trim()) {
-            errors.Password = 'Password is required';
+        if (!formData.password.trim()) {
+            errors.password = 'Password is required';
         }
 
         setErrors(errors);
@@ -41,7 +41,7 @@ export default function Login() {
         if (isFormValid) {
             try {
                 // Make an API request to get user data based on email and full name
-                const response = await axios.get(`http://localhost:3000/users?email=${formData.email}&Password=${formData.Password}`);
+                const response = await axios.get(`http://localhost:9090/users?email=${formData.email}&password=${formData.password}`);
                 
                 // Check if a user with the provided email and full name exists
                 if (response.data.length > 0) {
@@ -89,16 +89,16 @@ export default function Login() {
                             {errors.email && <span className="error">{errors.email}</span>}
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="Password" className="form-label">Password</label>
+                            <label htmlFor="password" className="form-label">Password</label>
                             <input
                                 type="text"
                                 className='form-control'
-                                id="Password"
+                                id="password"
                                 placeholder='enter your Password'
-                                name="Password"
-                                value={formData.Password}
+                                name="password"
+                                value={formData.password}
                                 onChange={(e) => handleInputChange(e)} />
-                            {errors.Password && <span className="error">{errors.Password}</span>}
+                            {errors.password && <span className="error">{errors.password}</span>}
                         </div>
                         {loginError && <div className="alert alert-danger">{loginError}</div>}
                         <button type="submit" className="btn btn-primary"style={{backgroundColor:"purple"}} >Login</button>
