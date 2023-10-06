@@ -12,16 +12,6 @@ function ChooseCardSection() {
   // Sample real credit card data, you can replace this with your actual data
   const realCreditCards = [
     {
-      name: 'BTC',
-      type: 'Crypto',
-      number: 'XXXX XXXX XXXX 6182',
-      balance: '$827,199',
-      cardHolder: 'JOHN DOE',
-      expiry: '08/23',
-      cvv: '123',
-      bgColor: '#5d70ff', // Background color for Crypto cards
-    },
-    {
       name: 'Card 2',
       type: 'Sports',
       number: 'XXXX XXXX XXXX 1234',
@@ -129,7 +119,6 @@ function ChooseCardSection() {
             value={selectedCardType}
           >
             <option value="All">All</option>
-            <option value="Crypto">Crypto</option>
             <option value="Travel">Travel</option>
             <option value="Sports">Sports</option>
             <option value="Lifestyle">Lifestyle</option>

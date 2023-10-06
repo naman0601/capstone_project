@@ -5,7 +5,7 @@ import CreditCardInsights from "./CreditInsights/CreditCardInsights";
 import DealsToOffer from "./Offers/DealsToOffer";
 
 export default function Dashboard() {
-  return 
+  return (
     <div>
       <CredRatingandCard />
       <PreApprovedLoans />
