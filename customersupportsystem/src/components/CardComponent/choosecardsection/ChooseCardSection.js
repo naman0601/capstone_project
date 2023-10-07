@@ -171,11 +171,11 @@ function ChooseCardSection() {
               <CreditCard
                 name={card.name}
                 type={card.type}
-                number={card.number}
-                balance={card.balance}
-                cardHolder={card.cardHolder}
-                expiry={card.expiry}
-                cvv={card.cvv}
+                number="XXXX XXXX XXXX 1234"
+                balance="$12,345"
+                cardHolder="JANE SMITH"
+                expiry="07/24"
+                cvv="456"
                 bgColor={card.bgColor}
                 onClick={() => handleSelectCard(card)}
               />

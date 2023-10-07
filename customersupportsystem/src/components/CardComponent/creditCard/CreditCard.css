@@ -1,4 +1,4 @@
-.cards {
+.Creditcards {
   width: 94%;
   padding: 0 10px 0;
   border-radius: 1rem;
@@ -11,95 +11,97 @@
   transition: all 300ms ease;
 }
 
-.cards:hover {
+.Creditcards:hover {
   box-shadow: none;
 }
 
-.cards .top {
+.Creditcards .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.cards .top .left {
+.Creditcards .top .left {
   display: flex;
   margin-top: 0.5rem;
   gap: 0.5rem;
 }
 
-.cards .top .left h2 {
+.Creditcards .top .left h2 {
   font-weight: 200;
   font-size: 1.4rem;
 }
 
-.cards .top .left img {
-  width: 2.3rem;
-  height: 2.3rem;
-  border: 1px solid white;
-  border-radius: 6px;
+.Creditcards .top .left img {
+  width: 6rem;
+  height: 6rem;
+  /* border: 1px solid white;
+  border-radius: 6px; */
   padding: 0.4rem;
+  margin-top: -20px;
+  margin-left: -10px;
 }
 
-.cards .top .right {
+.Creditcards .top .right {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
 }
 
-.cards .top .right img {
-  height: 1rem;
+.Creditcards .top .right img {
+  height: 1.75rem;
   margin-bottom: 10px;
 }
 
-.cards .middle {
+.Creditcards .middle {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.cards .middle h4 {
+.Creditcards .middle h4 {
   font-size: 1rem;
 }
 
-.cards .middle.chip {
+.Creditcards .middle.chip {
   height: 2rem;
 }
 
-.cards .bottom {
+.Creditcards .bottom {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.cards .bottom .left {
+.Creditcards .bottom .left {
   display: flex;
   flex-direction: column;
 }
 
-.cards .bottom .left small {
+.Creditcards .bottom .left small {
   font-size: 0.7rem;
 }
 
-.cards .bottom .left h5 {
+.Creditcards .bottom .left h5 {
   font-size: 1rem;
 }
 
-.cards .bottom .right {
+.Creditcards .bottom .right {
   display: flex;
   gap: 2rem;
 }
 
-.cards .bottom .right .expiry,
-.cards .bottom .right .cvv {
+.Creditcards .bottom .right .expiry,
+.Creditcards .bottom .right .cvv {
   display: flex;
   flex-direction: column;
 }
 
-.cards .bottom .right small {
+.Creditcards .bottom .right small {
   font-size: 0.7rem;
 }
 
-.cards .bottom .right h5 {
+.Creditcards .bottom .right h5 {
   font-size: 1rem;
 }
