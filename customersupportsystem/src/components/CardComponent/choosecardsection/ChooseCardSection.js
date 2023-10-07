@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ChooseCardSection.css';
 import CreditCard from '../creditCard/CreditCard';
+import axios from 'axios';
+import creditCardData from './creditCardData.json';
 
 function ChooseCardSection() {
   const [selectedCardType, setSelectedCardType] = useState('All');
@@ -8,70 +10,63 @@ function ChooseCardSection() {
   const [visibleCards, setVisibleCards] = useState([]);
   const [cardsToDisplay, setCardsToDisplay] = useState(6);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+  }); 
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+};
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.name.trim()) {
+        errors.name = 'Full Name is required';
+    }
+
+    if (!formData.email.trim()) {
+        errors.email = 'Email is required';
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+        errors.email = 'Invalid email format';
+    }
+
+    if (!formData.phoneNumber.trim()) {
+        errors.phoneNumber = 'Contact Number is required';
+    }
+    
+    setErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const isFormValid = validateForm();
+
+    if (isFormValid) {
+      const user = {
+        ...formData,
+    };
+        try {
+            await axios.post("http://localhost:8080/cardinfo", user);
+            setFormData({
+              name: '',
+              email: '',
+              phoneNumber: '',
+            });
+            
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+};
 
   // Sample real credit card data, you can replace this with your actual data
-  const realCreditCards = [
-    {
-      name: 'Card 2',
-      type: 'Sports',
-      number: 'XXXX XXXX XXXX 1234',
-      balance: '$12,345',
-      cardHolder: 'JANE SMITH',
-      expiry: '07/24',
-      cvv: '456',
-      bgColor: '#ff5d70', // Background color for Sports cards
-    },
-    {
-      name: 'TravelMaster',
-      type: 'Travel',
-      number: 'XXXX XXXX XXXX 5678',
-      balance: '$20,000',
-      cardHolder: 'MICHAEL BROWN',
-      expiry: '11/25',
-      cvv: '789',
-      bgColor: '#70ff5d', // Background color for Travel cards
-    },
-    {
-      name: 'Lifestyle Gold',
-      type: 'Lifestyle',
-      number: 'XXXX XXXX XXXX 8765',
-      balance: '$5,432',
-      cardHolder: 'EMMA WILSON',
-      expiry: '02/26',
-      cvv: '234',
-      bgColor: '#ff705d', // Background color for Lifestyle cards
-    },
-    {
-      name: 'Entertainment Plus',
-      type: 'Entertainment',
-      number: 'XXXX XXXX XXXX 4321',
-      balance: '$15,678',
-      cardHolder: 'DAVID LEE',
-      expiry: '05/27',
-      cvv: '567',
-      bgColor: '#5dff70', // Background color for Entertainment cards
-    },
-    {
-      name: 'ShopEasy',
-      type: 'Shopping',
-      number: 'XXXX XXXX XXXX 9876',
-      balance: '$3,210',
-      cardHolder: 'SARAH ADAMS',
-      expiry: '10/28',
-      cvv: '890',
-      bgColor: '#705dff', // Background color for Shopping cards
-    },
-    {
-      name: 'MakeMyTrip',
-      type: 'Travel',
-      number: 'XXXX XXXX XXXX 6182',
-      balance: '$63478',
-      cardHolder: 'ABHAY SINGH',
-      expiry: '08/23',
-      cvv: '123',
-      bgColor: '#FF0000', // Background color for Crypto cards
-    },
-  ];
+  const realCreditCards = creditCardData;
 
   useEffect(() => {
     if (selectedCardType === 'All') {
@@ -132,16 +127,41 @@ function ChooseCardSection() {
         <div className="center-container">
           <div className="application-form">
             <p>Type: {selectedCard.type}</p>
-            <label htmlFor="fullName">Full Name:</label>
-            <input type="text" id="fullName" placeholder="Enter your full name" />
+            <form onSubmit={(e)=> handleSubmit(e)}>
+            <label htmlFor="name">Full Name:</label>
+            <input 
+                type="text" 
+                id="name" 
+                placeholder="Enter your full name" 
+                name="name" 
+                value={formData.name} 
+                onChange={(e)=> handleInputChange(e)}
+                className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                />
+            {errors.name && <div className="invalid-feedback">{errors.name}</div>}
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" placeholder="Enter your email address" />
+            <input 
+               type="email" 
+               id="email" 
+               placeholder="Enter your email address" 
+               name="email" 
+               value={formData.email} 
+               onChange={(e)=> handleInputChange(e)} />
+            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
             <label htmlFor="phone">Phone Number:</label>
-            <input type="tel" id="phone" placeholder="Enter your phone number" />
+            <input 
+               type="tel" 
+               id="phone" 
+               placeholder="Enter your phone number" 
+               name="phoneNumber" 
+               value={formData.phoneNumber} 
+               onChange={(e)=> handleInputChange(e)}/>
+            {errors.phoneNumber && <span className="invalid-feedback">{errors.phoneNumber}</span>}   
             <button className="apply-button">Submit Application</button>
             <button className="apply-button" onClick={handleCancel}>
               Cancel
             </button>
+            </form>
           </div>
         </div>
       ) : (
