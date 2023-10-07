@@ -1,0 +1,53 @@
+[
+    {
+      "name": "CSK",
+      "type": "Sports",
+      "bgColor": "#FFFF00"
+    },
+    {
+      "name": "Lifestyle Gold",
+      "type": "Lifestyle",
+      "bgColor": "#ff705d"
+    },
+    {
+      "name": "Entertainment Plus",
+      "type": "Entertainment",
+      "bgColor": "#5dff70"
+    },
+    {
+      "name": "ShopEasy",
+      "type": "Shopping",
+      "bgColor": "#705dff"
+    },
+    {
+      "name": "MakeMyTrip",
+      "type": "Travel",
+      "bgColor": "#EC5800"
+    },
+    {
+      "name": "ActivePlus",
+      "type": "Sports",
+      "bgColor": "#CF9FFF"
+    },
+    {
+      "name": "TravelMaster",
+      "type": "Travel",
+      "bgColor": "#70ff5d"
+    },
+    {
+      "name": "Luxelife",
+      "type": "Lifestyle",
+      "bgColor": "#DA70D6"
+    },
+    {
+      "name": "Cinephile",
+      "type": "Entertainment",
+      "bgColor": "#FF9933"
+    },
+    {
+      "name": "Shopaholic",
+      "type": "Shopping",
+      "bgColor": "#FFB6C1"
+    }
+  ]
+  
