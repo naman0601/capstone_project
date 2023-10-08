@@ -1,49 +1,61 @@
-import React from 'react';
-import Slider from 'react-slick';
-import './FeaturesSection.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React from "react";
+import Slider from "react-slick";
+import "./FeaturesSection.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function FeaturesSection() {
   const features = [
     {
-      title: 'Credit Score-Dependent Credit Limit Increases',
-      icon: '/icons/data-analytics.png',
-      content: 'Your responsible financial behavior is rewarded with automatic credit limit increases. Watch your purchasing power grow along with your credit score.',
+      title: "Credit Score-Dependent Credit Limit Increases",
+      icon: "/icons/data-analytics.png",
+      content:
+        "Your responsible financial behavior is rewarded with automatic credit limit increases. Watch your purchasing power grow along with your credit score.",
     },
     {
-      title: 'Exclusive Access to Premium Services',
-      icon: '/icons/exclusive.png',
-      content: 'Indulge in premium concierge services, travel benefits, and airport lounge access, designed exclusively for our high credit score customers.',
+      title: "Exclusive Access to Premium Services",
+      icon: "/icons/exclusive.png",
+      content:
+        "Indulge in premium concierge services, travel benefits, and airport lounge access, designed exclusively for our high credit score customers.",
     },
     {
-      title: 'Flexible Payment Terms for Lower Credit Scores',
-      icon: '/icons/flexibility.png',
-      content: 'We understand the journey to great credit is not always easy. Choose flexible payment terms that fit your budget, making credit management more manageable.',
+      title: "Flexible Payment Terms for Lower Credit Scores",
+      icon: "/icons/flexibility.png",
+      content:
+        "We understand the journey to great credit is not always easy. Choose flexible payment terms that fit your budget, making credit management more manageable.",
     },
     {
-      title: 'Personalized Credit Limits',
-      icon: '/icons/offer.png',
-      content: 'We tailor your credit limit to your needs, ensuring you have just the right amount of credit to match your lifestyle.',
+      title: "Personalized Credit Limits",
+      icon: "/icons/offer.png",
+      content:
+        "We tailor your credit limit to your needs, ensuring you have just the right amount of credit to match your lifestyle.",
     },
     {
-      title: 'Rewards Boost for Good Credit Behavior',
-      icon: '/icons/reward.png',
-      content: 'As your credit score improves, so do your rewards. It is like getting a bonus for being financially responsible.',
+      title: "Rewards Boost for Good Credit Behavior",
+      icon: "/icons/reward.png",
+      content:
+        "As your credit score improves, so do your rewards. It is like getting a bonus for being financially responsible.",
     },
     {
-      title: 'Zero Annual Fee for High Credit Scores',
-      icon: '/icons/rewards.png',
-      content: 'Enjoy the rewards of your excellent credit rating with an annual fee waiver. It is our way of saying thank you.',
+      title: "Zero Annual Fee for High Credit Scores",
+      icon: "/icons/rewards.png",
+      content:
+        "Enjoy the rewards of your excellent credit rating with an annual fee waiver. It is our way of saying thank you.",
     },
   ];
-  
+
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: 'block', background: 'purple' ,color:'black', margin:'5px' }}
+        style={{
+          ...style,
+          display: "block",
+          background: "purple",
+          color: "black",
+          margin: "5px",
+        }}
         onClick={onClick}
       />
     );
@@ -54,7 +66,13 @@ function FeaturesSection() {
     return (
       <div
         className={className}
-        style={{ ...style, display: 'block', background: 'purple' ,color:'black', margin:'5px'}}
+        style={{
+          ...style,
+          display: "block",
+          background: "purple",
+          color: "black",
+          margin: "5px",
+        }}
         onClick={onClick}
       />
     );
@@ -71,7 +89,6 @@ function FeaturesSection() {
     prevArrow: <SamplePrevArrow />,
   };
 
-
   return (
     <section className="features">
       <h2>Explore credit card features and benefits</h2>
@@ -79,7 +96,7 @@ function FeaturesSection() {
       <div>
         <Slider {...settings}>
           {features.map((feature, index) => (
-            <div key={index} className='card'>
+            <div key={index} className="card CardFeatures">
               <div className="card-content">
                 <img
                   src={feature.icon}

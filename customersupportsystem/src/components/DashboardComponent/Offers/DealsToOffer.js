@@ -26,7 +26,7 @@ const DealsToOffer = () => {
   };
   return (
     <div style={{ backgroundColor: "#f0eff5" }}>
-      <section className="container">
+      <section className="container mycontainer">
         <h1 className="DealsHeading">Deals Of The Day</h1>
         <Carousel responsive={responsive}>
           <Product />

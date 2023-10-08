@@ -1,7 +1,7 @@
 .features {
   text-align: center;
   padding: 20px;
-  background-color: #652CB3;
+  background-color: #652cb3;
 }
 
 .features h2 {
@@ -16,11 +16,11 @@
   height: 5.5em;
   width: auto;
   padding-top: 40px;
-} 
+}
 
-.card {
+.Card {
   height: 254px;
-  background-color: #F2EAF9;
+  background-color: #f2eaf9;
   transition: all 0.4s;
   /* border-radius: 10px; */
   /* box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);  */
@@ -33,7 +33,7 @@
   /* border-radius: 15px; */
   cursor: pointer;
   box-shadow: 10px 5px 10px 5px rgba(0, 0, 0, 0.705);
-  background-color: #F2EAF9;
+  background-color: #f2eaf9;
 }
 
 .card:hover .card-content {
@@ -47,8 +47,6 @@
   font-size: 15px;
   transform: rotate(0deg);
 }
-
-
 
 /* .title h3 {
   font-size: 18px; 
@@ -71,7 +69,6 @@
 } */
 
 .card-content {
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,9 +91,7 @@
   padding-right: 10px;
 }
 
-
-
- .second-content {
+.second-content {
   height: 0%;
   width: 100%;
   opacity: 0;
@@ -105,5 +100,4 @@
   align-items: center;
   border-radius: 15px;
   transition: all 0.8s;
-
-} 
+}
