@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import './LoanCalculator.css'
 
 function LoanCalculator() {
   const [purpose, setPurpose] = useState('');
@@ -11,7 +11,7 @@ function LoanCalculator() {
   const [showApplyNow, setShowApplyNow] = useState(true);
   const [showManageLoans, setShowManageLoans] = useState(false);
   const [userLoans, setUserLoans] = useState([]);
-  const userId=203
+  const userId=204
   const calculateTotalPayableAmount = () => {
     if (purpose && loanAmount && (loanTermYears || loanTermMonths)) {
       const interestRate = 9.04; // Change this to your desired interest rate
@@ -45,7 +45,7 @@ function LoanCalculator() {
       console.log("Loan data sent successfully:", response.data);
       
       // Fetch user loans after submitting the new loan
-      const userLoanResponse = await axios.get('http://localhost:8080/userLoans?userId=203');
+      const userLoanResponse = await axios.get('http://localhost:8080/userLoans?userId=204');
       setUserLoans(userLoanResponse.data);
 
       // Hide the "Apply Now" card and show the "Manage Your Loans" card
@@ -119,7 +119,7 @@ function LoanCalculator() {
                 <option value="60">60 Months</option>
               </select>
             </div>
-            <button type='submit' className='btn btn-outline-primary text-white'>Submit</button>
+            <button type='submit'  style={{background:'#652cb3'}}className='btn btn-primary text-white'>Submit</button>
           </div>
           <div className="col-md-6">
             <div className="card" style={{ backgroundColor: '#652cb3', color: 'white' }}>
@@ -142,28 +142,41 @@ function LoanCalculator() {
       </div>
     </form>
     )}
-    {showManageLoans && (
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card" style={{ backgroundColor: '#652cb3', color: 'white' }}>
-              <div className="card-body">
-                <h1>Manage Your Loans</h1>
-                {/* Display user loans here */}
-                {userLoans.map((loan) => (
-                  <div key={loan.id}>
-                    <h4>Loan Type</h4>
-                    <p>{loan.loanType}</p>
-                    <p>{loan.loanAmt}</p>
-                    <p>{loan.loanInterest}</p>
-                    <p>{loan.loanTime}</p>
-                    {/* Display other loan details as needed */}
-                  </div>
-                ))}
-              </div>
-            </div>
+       <div>
+      {showManageLoans && (
+        <div>
+          <div>
+            <h1 className='manage'>Manage Your Loans</h1>
           </div>
-        </div>
+        <table class="table table-hover">
+        <thead>
+          <tr >
+            <th scope="col">Id</th>
+            <th scope="col">Loan Type</th>
+            <th scope="col">Loan Amount</th>
+            <th scope="col">Loan Interest Rate</th>
+            <th scope="col">Loan Period</th>
+            <th scope="col">Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+        {userLoans.map((loan) => (
+          <tr key={loan.id}>
+            <td>{loan.id}</td>
+            <td>{loan.loanType}</td>
+            <td>{loan.loanAmt}</td>
+            <td>{loan.loanInterest}</td>
+            <td>{loan.loanTime}</td>
+            <td><button className='btn btn-primary but'>Partial Payment</button></td>
+            {/* Add additional columns for other loan details as needed */}
+          </tr>
+        ))}
+      </tbody>
+      </table>
+      </div>
+     
       )}
+   </div>
     </div>
   );
 }

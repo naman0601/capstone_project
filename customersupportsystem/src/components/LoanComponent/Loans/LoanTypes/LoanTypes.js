@@ -1,82 +1,82 @@
-import React from 'react';
-import './LoanTypes.css'; // Create a CSS file for custom styles
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import './LoanTypes.css'; // Custom CSS file for additional styling
 import el from './assets/education_loan.jpg';
 import pl from './assets/personal_loan.jpg';
 import vl from './assets/vehicle_loan.jpg';
 import hl from './assets/home_loan.jpg';
 
-import { useState } from 'react';
- import Popup from './Popup';
-// import MyContextProvider from 'react'
+const cardsData = [
+  {
+    id: 1,
+    loanName: 'Personal Loan',
+    totalInterestRate: '8%',
+    loanType: 'Personal Purposes only',
+    imageUrl: pl,
+  },
+  {
+    id: 2,
+    loanName: 'Education Loan',
+    totalInterestRate: '6%',
+    loanType: 'For Students and Educational Purpose only',
+    imageUrl: el,
+  },
+  {
+    id: 3,
+    loanName: 'Home loan',
+    totalInterestRate: '4%',
+    loanType: 'Build Your dream house today ',
+    imageUrl: hl,
+  },
+  {
+    id: 4,
+    loanName: 'Vehicle Loan',
+    totalInterestRate: '7%',
+    loanType: 'Buy your first car today',
+    imageUrl: vl,
+  },
+];
 
 const LoanTypes = () => {
-  const [isClick , setonClick]=useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [showText, setShowText] = useState({});
 
-  const handleReadMore = () => {
-    setExpanded(true);
-  };
-
-  const handleClose = () => {
-    setExpanded(false);
+  const toggleText = (id) => {
+    setShowText((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
   };
 
   return (
-    
     <div className="container">
-                  <div className="btn-cont">
-              <button className="btn-custom">LOANS</button>
-            </div>
-    
-      <div className="row text-center">
-        <div className="col-md-6 mb-4">
-          <div className="loan-card">
-            <img src={pl} alt="Loan Type 1" className="img-fluid loan-image" />
-            <div className="overlay">
-              <button onClick={()=>setonClick(!isClick)} className="btn btn-primary">Read More</button>
-            </div>
-            {isClick && (
-            <p>
-            Initialization Order: Make sure that the component causing the error is not being rendered before the context provider is initialized. Ensure that the context is available when the component is being used.
-Check for Null or Undefined Values: Ensure that the context or state variable you are trying to access with useContext is not null or undefined at the time of access. You can add conditional checks to handle such cases gracefully.
-
-Hot Module Replacement (HMR): The error message you provided contains references to hot module replacement (
-            </p>
-)}
-          </div>
-        </div>
-        <div className="col-md-6 mb-4">
-          <div className="loan-card">
-            <img src={hl} alt="Loan Type 2" className="img-fluid loan-image" />
-            <div className="overlay">
-            <button onClick={handleReadMore} className="btn btn-primary">Read More</button>
-              
+      <div className="row">
+        {cardsData.map((card) => (
+          <div className="col-md-6 col-lg-3" key={card.id}>
+            <div className="card mb-4 ">
+              <img
+                src={card.imageUrl}
+                className="card-img-top img-fluid si"
+                alt={card.loanName}
+              />
+              <div className="card-body">
+                <button 
+                  className="btn btn-primary btn-block"
+                  onClick={() => toggleText(card.id)}
+                  style={{background:'#652cb3'}}
+                >
+                  {showText[card.id] ? 'Close' : 'Read More'}
+                </button>
+                {showText[card.id] && (
+                  <div style={{color:'#652cb3'}}> 
+                    <h5 className="card-title">{card.loanName}</h5>
+                    <p className="card-text">Total Interest Rate: {card.totalInterestRate}</p>
+                    <p className="card-text">Need: {card.loanType}</p>
+                  </div>
+                )}
               </div>
-              {expanded && <Popup onClose={handleClose} />}
-          </div>
-        </div>
-      </div>
-      <div className="row text-center">
-        <div className="col-md-6 mb-4">
-          <div className="loan-card">
-            <img src={el} alt="Loan Type 3" className="img-fluid loan-image" />
-            <div className="overlay">
-              <button onClick={handleReadMore} className="btn btn-primary">Read More</button>
-              
             </div>
-            {expanded && <Popup onClose={handleClose} />}
           </div>
-        </div>
-        <div className="col-md-6 mb-4">
-          <div className="loan-card">
-            <img src={vl} alt="Loan Type 4" className="img-fluid loan-image" />
-            <div className="overlay">
-            <button onClick={handleReadMore} className="btn btn-primary">Read More</button>
-              
-              </div>
-              {expanded && <Popup onClose={handleClose} />}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
