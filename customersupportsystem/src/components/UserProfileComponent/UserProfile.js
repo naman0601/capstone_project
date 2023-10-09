@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -5,10 +6,12 @@ const UserProfile = () => {
   //   const [user, setUser] = useState(null);
   const Id = localStorage.getItem("userId");
   let user;
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         // Replace the following line with your actual API endpoint for fetching user data
+
         const response = await axios.get(
           `http://localhost:9090/users?userId=${Id}`
         );
@@ -17,11 +20,12 @@ const UserProfile = () => {
         // setUser(response.data); // Assuming the API response contains user data
       } catch (error) {
         console.error("Error fetching user data:", error);
-      }
+
     };
 
     fetchUserData();
   }, []);
+
 
   return (
     // <div className="container">
@@ -65,6 +69,7 @@ const UserProfile = () => {
     //           <div>{user.panCard}</div>
     //         </div>
     //       </div>
+
     //       {/* ) : (
     //         <p>Loading user data...</p>
     //       )} */}
@@ -72,8 +77,10 @@ const UserProfile = () => {
     //   </div>
     // </div>
 
+
     <div>{console.log(user)}</div>
   );
 };
 
 export default UserProfile;
+

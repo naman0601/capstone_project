@@ -1,0 +1,104 @@
+{
+  "loans": [
+    {
+      "id": 1,
+      "loanName": "Personal Loan",
+      "totalInterestRate": "8%",
+      "loanType": "Personal Purposes only",
+      "imageUrl": "/Resources/loan/personal_loan.jpg"
+    },
+    {
+      "id": 2,
+      "loanName": "Education Loan",
+      "totalInterestRate": "6%",
+      "loanType": "For Students and Educational Purpose only",
+      "imageUrl": "/Resources/loan/education_loan.jpg"
+    },
+    {
+      "id": 3,
+      "loanName": "Home Loan",
+      "totalInterestRate": "6%",
+      "loanType": "Housing loan",
+      "imageUrl": "/Resources/loan/home_loan.jpg"
+    },
+    {
+        "id": 4,
+        "loanName": "Vehicle Loan",
+        "totalInterestRate": "6%",
+        "loanType": "Get your new car today",
+        "imageUrl": "/Resources/loan/vehicle_loan.jpg"
+    }
+  ],
+
+
+
+  "cards": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  
+
+
+  "preApprovedLoans": 
+    {
+      "Good": [
+    {
+      "id": 1,
+      "title": "Personal Loan",
+      "imageUrl": "/Resources/loan/personal_loan.jpg",
+      "interestRate": "8%",
+      "loanAmount": "600000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero non justo egestas dictum ac ac justo. Praesent vitae euismod dui."
+    },
+    {
+      "id": 2,
+      "title": "Home Loan",
+      "imageUrl": "/Resources/loan/personal_loan.jpg",
+      "image": "homeLoan.jpg",
+      "interestRate": "9%",
+      "loanAmount": "600000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero non justo egestas dictum ac ac justo. Praesent vitae euismod dui."
+    },
+    {
+      "id": 3,
+      "title": "Vehicle Loan",
+      "imageUrl": "/Resources/loan/personal_loan.jpg",
+      "image": "vehicleLoan.jpg",
+      "interestRate": "8%",
+      "loanAmount": "600000",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero non justo egestas dictum ac ac justo. Praesent vitae euismod dui."
+    }
+    ],
+    "Average" : [
+      {
+        "id": 1,
+        "title": "Personal Loan",
+        "imageUrl": "/Resources/loan/personal_loan.jpg",
+        "interestRate": "9%",
+        "loanAmount": "400000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero non justo egestas dictum ac ac justo. Praesent vitae euismod dui."
+      },
+      {
+        "id": 2,
+        "title": "Home Loan",
+
+        "imageUrl": "/Resources/loan/personal_loan.jpg",
+        "interestRate": "10%",
+        "loanAmount": "400000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero non justo egestas dictum ac ac justo. Praesent vitae euismod dui."
+      },
+      {
+        "id": 3,
+        "title": "Vehicle Loan",
+        "imageUrl": "/Resources/loan/personal_loan.jpg",
+        "interestRate": "9%",
+        "loanAmount": "400000",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a libero non justo egestas dictum ac ac justo. Praesent vitae euismod dui."
+      }
+    ]
+  }
+  
+}

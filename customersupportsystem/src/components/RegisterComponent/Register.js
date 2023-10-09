@@ -79,7 +79,7 @@ export default function Register() {
         if (isFormValid) {
             const { ConfirmPassword, ...user } = formData;
             try {
-                await axios.post("http://localhost:9090/users", user);
+                await axios.post("http://localhost:8080/users", user);
                 setFormData({
                     fullName: '',
                     email: '',
