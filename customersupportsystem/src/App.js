@@ -1,4 +1,3 @@
-
 import "./App.css";
 import HomeComponent from "./components/HomeComponent/HomeComponent";
 import Login from "./components/LoginComponent/Login";
@@ -16,7 +15,6 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import UserProfile from "./components/UserProfileComponent/UserProfile";
 import { RequireAuth } from "./Auth/RequireAuth";
 
 function App() {
@@ -40,7 +38,7 @@ function App() {
             <Route exact path="/card" element={<Card />} />
             <Route exact path="/loan" element={<Loan />} />
             <Route exact path="/offers" element={<Offer />} />
-            <Route exact path="/userProfile" element={<UserProfile />} />
+            {/* <Route exact path="/userProfile" element={<UserProfile />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
