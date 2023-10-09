@@ -79,23 +79,31 @@ function Navbar() {
             </div>
             {!auth.user && (
               <div className="nav-item" style={{ textAlign: "center" }}>
-                <button className="btn btn-primary">
+                {/* <button className="btn btn-primary">
                   <Link to="/register">Register</Link>
-                </button>
+                </button> */}
+                <NavLink className="nav-link btn btn-custom" to="/register">
+                  Register
+                </NavLink>
               </div>
             )}
             {!auth.user && (
               <div className="nav-item" style={{ textAlign: "center" }}>
-                <button className="btn btn-primary">
-                  <Link to="/login">Login</Link>
-                </button>
+                {/* <button className="btn btn-primary">
+                  <Link>Login</Link>
+                </button> */}
+                <NavLink className="nav-link btn btn-custom" to="/login">
+                  Login
+                </NavLink>
               </div>
             )}
             {auth.user && (
-              <div className="nav-item" style={{ textAlign: "center" }}>
-                <button className="btn btn-primary" onClick={handleLogout}>
-                  Logout
-                </button>
+              <div
+                className="nav-item"
+                style={{ textAlign: "center" }}
+                onClick={handleLogout}
+              >
+                <NavLink className="nav-link btn btn-custom">Logout</NavLink>
               </div>
             )}
           </div>

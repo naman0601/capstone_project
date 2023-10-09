@@ -10,16 +10,23 @@ function LoanCalculator() {
   const [loanAmount, setLoanAmount] = useState("");
   const [loanTermYears, setLoanTermYears] = useState("");
   const [loanTermMonths, setLoanTermMonths] = useState("");
+<<<<<<< HEAD
+=======
+  const [interest, setInterest] = useState(9);
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
   const [totalPayableAmount, setTotalPayableAmount] = useState(0);
   const [showApplyNow, setShowApplyNow] = useState(true);
   const [showManageLoans, setShowManageLoans] = useState(false);
   const [userLoans, setUserLoans] = useState([]);
   const userId = 204;
+<<<<<<< HEAD
+=======
+  let interestRate = interest; // Change this to your desired interest rate
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
   const calculateTotalPayableAmount = () => {
     if (purpose && loanAmount && (loanTermYears || loanTermMonths)) {
-      const interestRate = 9.04; // Change this to your desired interest rate
       const totalMonths = loanTermYears * 12 + Number(loanTermMonths);
-      const totalAmount = (loanAmount * interestRate * totalMonths) / 100;
+      const totalAmount = (loanAmount * interestRate * totalMonths) / 1200;
       setTotalPayableAmount(totalAmount + Number(loanAmount));
     } else {
       setTotalPayableAmount(0);
@@ -27,7 +34,16 @@ function LoanCalculator() {
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     
+=======
+    if (location.state && location.state.card) {
+      const card = location.state.card;
+      setPurpose(card.title);
+      setLoanAmount(card.loanAmount);
+      setInterest(card.interestRate);
+    }
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
     calculateTotalPayableAmount();
   }, [
     purpose,
@@ -35,6 +51,10 @@ function LoanCalculator() {
     loanTermYears,
     loanTermMonths,
     calculateTotalPayableAmount,
+<<<<<<< HEAD
+=======
+    location.state,
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
   ]);
 
   const onSubmit = async (e) => {
@@ -88,8 +108,14 @@ function LoanCalculator() {
                 >
                   <option value="">Select Purpose</option>
                   <option value="Pre-Approved Loan">Pre-Approved Loan</option>
+<<<<<<< HEAD
                   <option value="Home">Home</option>
                   <option value="Car">Car</option>
+=======
+                  <option value="Personal Loan">Personal Loan</option>
+                  <option value="Home Loan">Home Loan</option>
+                  <option value="Vehicle Loan">Car</option>
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
                   <option value="Education">Education</option>
                   <option value="Other">Other</option>
                 </select>
@@ -123,6 +149,7 @@ function LoanCalculator() {
                     }}
                   >
                     <option value="">Select Months</option>
+<<<<<<< HEAD
                     <option value="1">12 Months</option>
                     <option value="2">24 Months</option>
                     <option value="3">36 Months</option>
@@ -134,6 +161,19 @@ function LoanCalculator() {
                     <option value="9">60 Months</option>
                     <option value="10">60 Months</option>
                     <option value="11">60 Months</option>
+=======
+                    <option value="1">1 Months</option>
+                    <option value="2">2 Months</option>
+                    <option value="3">3 Months</option>
+                    <option value="4">4 Months</option>
+                    <option value="5">5 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="7">7 Months</option>
+                    <option value="8">8 Months</option>
+                    <option value="9">9 Months</option>
+                    <option value="10">10 Months</option>
+                    <option value="11">11 Months</option>
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
                   </select>
                 </div>
                 <button
@@ -160,7 +200,11 @@ function LoanCalculator() {
                       {loanTermYears} years {loanTermMonths} months
                     </p>
                     <h4>Interest Rate</h4>
+<<<<<<< HEAD
                     <p>9.04%</p>
+=======
+                    <p>{interest}</p>
+>>>>>>> 4df17334d21825323ad69eff52f686059b796fc8
                     <h4>Total Payable Amount</h4>
                     <p>{totalPayableAmount}</p>
                   </div>
