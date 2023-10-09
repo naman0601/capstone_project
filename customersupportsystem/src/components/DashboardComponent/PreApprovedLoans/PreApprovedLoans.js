@@ -3,13 +3,13 @@ import personalLoan from "../../../images/personal Loan.jpg";
 const PreApprovedLoans = () => {
   return (
     <div style={{ backgroundColor: "#f0eff5" }}>
-      <section className="container mt-4 mb-4">
+      <section className="container mycontainer mt-4 mb-4">
         <h1 className="text-center" style={{ marginBottom: "4rem" }}>
           Pre-Approved Loans For you
         </h1>
         <div className="row">
           <div className="col-md-4">
-            <div className="card">
+            <div className="card Dashboard">
               <img
                 src={personalLoan} // Replace with your image URL
                 className="card-img-top"
@@ -38,7 +38,7 @@ const PreApprovedLoans = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="card">
+            <div className="card Dashboard">
               <img
                 src={personalLoan} // Replace with your image URL
                 className="card-img-top"
@@ -66,7 +66,7 @@ const PreApprovedLoans = () => {
             </div>
           </div>
           <div className="col-md-4">
-            <div className="card">
+            <div className="card Dashboard">
               <img
                 src={personalLoan} // Replace with your image URL
                 className="card-img-top"

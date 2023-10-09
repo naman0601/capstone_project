@@ -3,7 +3,7 @@ import CredInsight from "../../../images/CreditscoreInsight.jpg";
 const CreditCardInsights = () => {
   return (
     <div>
-      <div class="container">
+      <div class="container mycontainer">
         <div class="row">
           <div class="col-md-6 col-sm-12 mb-4">
             <div

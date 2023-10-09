@@ -1,7 +1,3 @@
-#root {
-  text-align: center;
-}
-
 h1 {
   margin: 1rem auto 4rem;
 }
@@ -12,7 +8,7 @@ h1 {
   object-fit: cover;
 }
 
-.card {
+.Dashboard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 320px;
   margin: auto 1rem;
@@ -25,7 +21,7 @@ h1 {
   font-size: 22px;
 }
 
-.card button {
+.Dashboard button {
   border: none;
   outline: 0;
   padding: 12px;
@@ -37,6 +33,6 @@ h1 {
   font-size: 18px;
 }
 
-.card button:hover {
+.Dashboard button:hover {
   opacity: 0.7;
 }
