@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+// import { preApprovedLoans } from "../../../db.json";
 
 const PreApprovedLoans = () => {
   const [cards, setCards] = useState([]);
   const a = 800; // Assuming 'a' represents some kind of credit score or condition
 
   useEffect(() => {
-    fetch('http://localhost:3000/preApprovedLoans') // Assuming db.json is in your public directory
+    fetch("http://localhost:3000/preApprovedLoans") // Assuming db.json is in your public directory
       .then((response) => response.json())
       .then((data) => {
         // Determine which array to use based on the 'a' condition
@@ -18,7 +19,7 @@ const PreApprovedLoans = () => {
 
         setCards(selectedArray);
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, [a]);
 
   return (
@@ -32,12 +33,12 @@ const PreApprovedLoans = () => {
             cards.map((card) => (
               <div className="col-md-4" key={card.id}>
                 <div className="card">
-                <img
-          src={card.imageUrl} // Assuming images are in a directory named "images"
-          className="card-img-top"
-          alt={card.title}
-          style={{ width: "100%" }}
-        />
+                  <img
+                    src={card.imageUrl} // Assuming images are in a directory named "images"
+                    className="card-img-top"
+                    alt={card.title}
+                    style={{ width: "100%" }}
+                  />
                   <div className="card-body">
                     <h5 className="card-title">{card.title}</h5>
                     <p className="card-text">
@@ -61,7 +62,6 @@ const PreApprovedLoans = () => {
           ) : (
             <p>Loading...</p>
           )}
-
         </div>
       </section>
     </div>
