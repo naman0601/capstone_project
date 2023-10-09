@@ -9,7 +9,7 @@ export default function Register() {
         email: '',
         contactNumber: '',
         address: '',
-        dob: '',
+
         employmentStatus: '',
         employerDetails: '',
         panCard: '',
@@ -45,9 +45,6 @@ export default function Register() {
             errors.address = 'Address is required';
         }
 
-        if (!formData.dob.trim()) {
-            errors.dob = 'Date of Birth is required';
-        }
 
         if (!formData.employerDetails.trim()) {
             errors.employerDetails = 'Employer Details is required';
@@ -79,13 +76,13 @@ export default function Register() {
         if (isFormValid) {
             const { ConfirmPassword, ...user } = formData;
             try {
-                await axios.post("http://localhost:8080/users", user);
+                await axios.post("http://localhost:9001/users", user);
                 setFormData({
                     fullName: '',
                     email: '',
                     contactNumber: '',
                     address: '',
-                    dob: '',
+                   
                     employmentStatus: 'employed',
                     employerDetails: '',
                     panCard: '',
@@ -153,18 +150,6 @@ export default function Register() {
                                 value={formData.address}
                                 onChange={(e) => handleInputChange(e)} />
                             {errors.address && <span className="error">{errors.address}</span>}
-                        </div>
-                        <div className='mb-3'>
-                            <label htmlFor="dob" className="form-label">Date of Birth</label>
-                            <input
-                                type="date"
-                                className='form-control'
-                                id="dob"
-                                placeholder='enter your date of birth'
-                                name="dob"
-                                value={formData.dob}
-                                onChange={(e) => handleInputChange(e)} />
-                            {errors.dob && <span className="error">{errors.dob}</span>}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="employmentStatus" className="form-label">Employment Status</label>
