@@ -23,7 +23,7 @@ const HeroUnit = () => {
         <div class="mask">
           <div class="d-flex justify-content-center align-items-center insidemask">
             <div class="text-white justify-content-center align-items-center">
-              <h1 class="mb-3" style={{ fontSize: "4.5rem" }}>
+              <h1 class="mb-3 mymb" style={{ fontSize: "4.5rem" }}>
                 Welcome To Credit Pulse
               </h1>
               <div className="catchy-text">
