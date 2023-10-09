@@ -48,7 +48,7 @@ export default function Login() {
       try {
         // Make an API request to get user data based on email and full name
         const response = await axios.get(
-          `http://localhost:9090/users/login?email=${formData.email}&password=${formData.password}`
+          `http://localhost:8080/users/login?email=${formData.email}&password=${formData.password}`
         );
 
 

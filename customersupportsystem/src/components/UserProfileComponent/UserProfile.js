@@ -3,28 +3,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const UserProfile = () => {
-  //   const [user, setUser] = useState(null);
+const [user, setUser] = useState({});
   const Id = localStorage.getItem("userId");
-  let user;
+  
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Replace the following line with your actual API endpoint for fetching user data
-
         const response = await axios.get(
-          `http://localhost:9090/users?userId=${Id}`
+          `http://localhost:8080/users?userId=${Id}`
         );
-        console.log(response);
-        user = response.data;
-        // setUser(response.data); // Assuming the API response contains user data
+        setUser(response.data); // Update the user state
       } catch (error) {
         console.error("Error fetching user data:", error);
-
+      }
     };
 
     fetchUserData();
-  }, []);
+  }, [Id]);
 
 
   return (

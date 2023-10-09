@@ -38,7 +38,7 @@ const LoanTypes = () => {
                 <button 
                   className="btn btn-primary btn-block"
                   onClick={() => toggleText(card.id)}
-                  style={{background:'#652cb3'}}
+                  style={{background:'#652cb3', color:'white'}}
                 >
                   {showText[card.id] ? 'Close' : 'Read More'}
                 </button>
