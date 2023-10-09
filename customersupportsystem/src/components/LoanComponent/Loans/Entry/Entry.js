@@ -10,8 +10,8 @@ const Entry = () => {
           {/* Text */}
           <div className="text-left" >
 
-            <h1 className='heading'>CREDIT PULSE</h1>
-            <p className='heading'>
+            <h1 className='loan-heading'>CREDIT PULSE</h1>
+            <p className='loan-heading'>
               YOUR ONE STOP SOLUTION TO YOUR EVERY BANKING NEED.<br/>
             WE OFFER LOANS WITH THE LOWEST INTEREST RATES<br/>BASED ON YOUR CREDIT RATING</p>
 

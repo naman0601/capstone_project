@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -10,14 +11,17 @@ export default function Login() {
     password: "",
   });
 
+
   const auth = useAuth();
   const [errors, setErrors] = useState({});
   const [loginError, setLoginError] = useState("");
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
 
   const validateForm = () => {
     const errors = {};
@@ -47,6 +51,7 @@ export default function Login() {
           `http://localhost:9090/users/login?email=${formData.email}&password=${formData.password}`
         );
 
+
         // Check if a user with the provided email and full name exists
         if (response.data.userId != null) {
           console.log(typeof response.data.userId);
@@ -56,6 +61,7 @@ export default function Login() {
           navigate("/dash", { replace: true });
         } else {
           setLoginError("User not found. Please check your credentials.");
+
         }
       } catch (error) {
         console.error("Error:", error);
