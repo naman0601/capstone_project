@@ -3,7 +3,6 @@ import './CreditCard.css';
 
 const CreditCard = ({
   name,
-  type,
   number,
   balance,
   cardHolder,
@@ -12,14 +11,14 @@ const CreditCard = ({
   bgColor,
 }) => {
   return (
-    <div className="cards" style={{ backgroundColor: bgColor }}>
+    <div className="Creditcards" style={{ backgroundColor: bgColor }}>
       <div className="top">
         <div className="left">
           <img src={`/creditcardimg/${name}.png`} alt={name} />
           <h2>{name}</h2>
         </div>
         <div className="right">
-          <img src={`/creditcardimg/visa.png`} alt="" className="right" />
+          <img src={`/creditcardimg/logo-removebg-preview.png`} alt="" className="right" />
           <img src={`/creditcardimg/card chip.png`} className="chip" alt="" />
         </div>
       </div>

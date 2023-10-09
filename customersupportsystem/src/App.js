@@ -16,6 +16,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import UserProfile from "./components/UserProfileComponent/UserProfile";
+import { RequireAuth } from "./Auth/RequireAuth";
 
 function App() {
   return (
@@ -26,7 +27,15 @@ function App() {
             <Route index element={<HomeComponent />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
-            <Route exact path="/dash" element={<Dashboard />} />
+            <Route
+              exact
+              path="/dash"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
             <Route exact path="/card" element={<Card />} />
             <Route exact path="/loan" element={<Loan />} />
             <Route exact path="/offers" element={<Offer />} />

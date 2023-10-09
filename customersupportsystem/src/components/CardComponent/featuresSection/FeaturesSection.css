@@ -13,12 +13,13 @@
 
 .feature-icon {
   margin-right: 10px;
+  margin-top: 30px;
   height: 5.5em;
   width: auto;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
-.Card {
+.featureCard {
   height: 254px;
   background-color: #f2eaf9;
   transition: all 0.4s;
@@ -29,19 +30,19 @@
   margin-bottom: 40px;
 }
 
-.card:hover {
+.featureCard:hover {
   /* border-radius: 15px; */
   cursor: pointer;
   box-shadow: 10px 5px 10px 5px rgba(0, 0, 0, 0.705);
   background-color: #f2eaf9;
 }
 
-.card:hover .card-content {
+.featureCard:hover .card-content {
   height: 0px;
   opacity: 0;
 }
 
-.card:hover .second-content {
+.featureCard:hover .benefit-content {
   opacity: 1;
   height: 100%;
   font-size: 15px;
@@ -85,13 +86,13 @@
   margin-right: 10px;
 }
 
-.second-content h4 {
+.benefit-content h4 {
   font-size: 15px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.second-content {
+.benefit-content {
   height: 0%;
   width: 100%;
   opacity: 0;

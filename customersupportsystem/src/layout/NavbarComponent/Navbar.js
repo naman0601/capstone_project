@@ -47,11 +47,21 @@ function Navbar() {
           id="navbarNav"
         >
           <div className="navbar-nav justify-content-center">
-            <div className="nav-item">
-              <NavLink className="nav-link btn btn-custom" to="/">
-                Home
-              </NavLink>
-            </div>
+            {!auth.user && (
+              <div className="nav-item">
+                <NavLink className="nav-link btn btn-custom" to="/">
+                  Home
+                </NavLink>
+              </div>
+            )}
+            {auth.user && (
+              <div className="nav-item">
+                <NavLink className="nav-link btn btn-custom" to="/dash">
+                  Dashboard
+                </NavLink>
+              </div>
+            )}
+
             <div className="nav-item">
               <NavLink className="nav-link btn btn-custom" to="/card">
                 Cards

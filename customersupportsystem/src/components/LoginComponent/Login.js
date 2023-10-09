@@ -53,7 +53,7 @@ export default function Login() {
           alert("Login Successful");
           const user = response.data;
           auth.login(user);
-          navigate("/dash");
+          navigate("/dash", { replace: true });
         } else {
           setLoginError("User not found. Please check your credentials.");
         }
