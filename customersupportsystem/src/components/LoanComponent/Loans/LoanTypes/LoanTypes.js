@@ -1,10 +1,6 @@
-import React, {useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './LoanTypes.css'; // Custom CSS file for additional styling
-
-
-
-
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import "./LoanTypes.css"; // Custom CSS file for additional styling
 
 const LoanTypes = () => {
   const [showText, setShowText] = useState({});
@@ -15,14 +11,14 @@ const LoanTypes = () => {
       [id]: !prevState[id],
     }));
   };
- 
-  const [cardsData ,setd]=useState([]);
+
+  const [cardsData, setd] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/loans')
-      .then(response => response.json())
-      .then(result => setd(result))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []); 
+    // fetch('http://localhost:3000/loans')
+    //   .then(response => response.json())
+    //   .then(result => setd(result))
+    //   .catch(error => console.error('Error fetching data:', error));
+  }, []);
   return (
     <div className="container">
       <div className="row">
@@ -35,17 +31,19 @@ const LoanTypes = () => {
                 alt={card.loanName}
               />
               <div className="card-body">
-                <button 
+                <button
                   className="btn btn-primary btn-block"
                   onClick={() => toggleText(card.id)}
-                  style={{background:'#652cb3'}}
+                  style={{ background: "#652cb3" }}
                 >
-                  {showText[card.id] ? 'Close' : 'Read More'}
+                  {showText[card.id] ? "Close" : "Read More"}
                 </button>
                 {showText[card.id] && (
-                  <div style={{color:'#652cb3'}}> 
+                  <div style={{ color: "#652cb3" }}>
                     <h5 className="card-title">{card.loanName}</h5>
-                    <p className="card-text">Total Interest Rate: {card.totalInterestRate}</p>
+                    <p className="card-text">
+                      Total Interest Rate: {card.totalInterestRate}
+                    </p>
                     <p className="card-text">Need: {card.loanType}</p>
                   </div>
                 )}
