@@ -1,4 +1,4 @@
-.container {
+.mycontainer {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -14,7 +14,7 @@
   object-fit: cover;
 }
 
-.card {
+.Dashboard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
   margin: auto 1rem;
@@ -27,7 +27,7 @@
   font-size: 22px;
 }
 
-.card button {
+.Dashboard button {
   border: none;
   outline: 0;
   padding: 12px;
@@ -39,6 +39,6 @@
   font-size: 18px;
 }
 
-.card button:hover {
+.Dashboard button:hover {
   opacity: 0.7;
 }

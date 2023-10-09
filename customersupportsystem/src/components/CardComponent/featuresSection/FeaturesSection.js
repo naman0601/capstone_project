@@ -1,19 +1,25 @@
-import React from 'react';
-import Slider from 'react-slick';
-import './FeaturesSection.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import featureData from './featureData';
+import React from "react";
+import Slider from "react-slick";
+import "./FeaturesSection.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import featureData from "./featureData";
 
 function FeaturesSection() {
   const features = featureData;
-  
+
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: 'block', background: 'purple' ,color:'black', margin:'5px' }}
+        style={{
+          ...style,
+          display: "block",
+          background: "purple",
+          color: "black",
+          margin: "5px",
+        }}
         onClick={onClick}
       />
     );
@@ -24,7 +30,13 @@ function FeaturesSection() {
     return (
       <div
         className={className}
-        style={{ ...style, display: 'block', background: 'purple' ,color:'black', margin:'5px'}}
+        style={{
+          ...style,
+          display: "block",
+          background: "purple",
+          color: "black",
+          margin: "5px",
+        }}
         onClick={onClick}
       />
     );
@@ -41,7 +53,6 @@ function FeaturesSection() {
     prevArrow: <SamplePrevArrow />,
   };
 
-
   return (
     <section className="features">
       <h2>Explore credit card features and benefits</h2>
@@ -49,7 +60,7 @@ function FeaturesSection() {
       <div>
         <Slider {...settings}>
           {features.map((feature, index) => (
-            <div key={index} className='featureCard'>
+            <div key={index} className="featureCard">
               <div className="card-content">
                 <img
                   src={feature.icon}

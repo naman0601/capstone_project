@@ -23,7 +23,7 @@ const PreApprovedLoans = () => {
 
   return (
     <div style={{ backgroundColor: "#f0eff5" }}>
-      <section className="container mt-4 mb-4">
+      <section className="container mycontainer mt-4 mb-4">
         <h1 className="text-center" style={{ marginBottom: "4rem" }}>
           Pre-Approved Loans For You
         </h1>
@@ -61,6 +61,7 @@ const PreApprovedLoans = () => {
           ) : (
             <p>Loading...</p>
           )}
+
         </div>
       </section>
     </div>
