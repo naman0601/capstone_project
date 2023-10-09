@@ -1,24 +1,37 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { preApprovedLoans } from "../../../db";
 
 const PreApprovedLoans = () => {
+  const navigate = useNavigate();
   const [cards, setCards] = useState([]);
   const a = 800; // Assuming 'a' represents some kind of credit score or condition
 
   useEffect(() => {
-    fetch('http://localhost:3000/preApprovedLoans') // Assuming db.json is in your public directory
-      .then((response) => response.json())
-      .then((data) => {
-        // Determine which array to use based on the 'a' condition
-        let selectedArray = [];
-        if (a > 700) {
-          selectedArray = data.Good;
-        } else if (a >= 500 && a <= 700) {
-          selectedArray = data.Average;
-        }
+    // fetch("http://localhost:3000/preApprovedLoans") // Assuming db.json is in your public directory
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     // Determine which array to use based on the 'a' condition
+    //     let selectedArray = [];
+    //     if (a > 700) {
+    //       selectedArray = data.Good;
+    //     } else if (a >= 500 && a <= 700) {
+    //       selectedArray = data.Average;
+    //     }
 
-        setCards(selectedArray);
-      })
-      .catch((error) => console.error('Error fetching data:', error));
+    //     setCards(selectedArray);
+    //   })
+    //   .catch((error) => console.error("Error fetching data:", error));
+    let selectedArray = [];
+    if (a >= 700) {
+      selectedArray = preApprovedLoans.Good;
+    } else if (a >= 500 && a <= 700) {
+      selectedArray = preApprovedLoans.Average;
+    }
+
+    setCards(selectedArray);
+    console.log(cards);
   }, [a]);
 
   return (
@@ -32,12 +45,13 @@ const PreApprovedLoans = () => {
             cards.map((card) => (
               <div className="col-md-4" key={card.id}>
                 <div className="card">
-                <img
-          src={card.imageUrl} // Assuming images are in a directory named "images"
-          className="card-img-top"
-          alt={card.title}
-          style={{ width: "100%" }}
-        />
+                  <img
+                    src={card.imageUrl} // Assuming images are in a directory named "images"
+                    className="card-img-top"
+                    alt={card.title}
+                    style={{ width: "100%" }}
+                  />
+
                   <div className="card-body">
                     <h5 className="card-title">{card.title}</h5>
                     <p className="card-text">
@@ -47,13 +61,15 @@ const PreApprovedLoans = () => {
                       <br />
                       {card.description}
                     </p>
-                    <a
-                      href="#"
+                    <button
+                      onClick={() => {
+                        navigate("/loan", { state: { card } });
+                      }}
                       className="btn btn-primary"
                       style={{ backgroundColor: "#5e10b1" }}
                     >
                       Apply Now
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -61,7 +77,6 @@ const PreApprovedLoans = () => {
           ) : (
             <p>Loading...</p>
           )}
-
         </div>
       </section>
     </div>
