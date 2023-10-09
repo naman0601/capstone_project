@@ -1,41 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './LoanTypes.css'; // Custom CSS file for additional styling
-import el from './assets/education_loan.jpg';
-import pl from './assets/personal_loan.jpg';
-import vl from './assets/vehicle_loan.jpg';
-import hl from './assets/home_loan.jpg';
 
-const cardsData = [
-  {
-    id: 1,
-    loanName: 'Personal Loan',
-    totalInterestRate: '8%',
-    loanType: 'Personal Purposes only',
-    imageUrl: pl,
-  },
-  {
-    id: 2,
-    loanName: 'Education Loan',
-    totalInterestRate: '6%',
-    loanType: 'For Students and Educational Purpose only',
-    imageUrl: el,
-  },
-  {
-    id: 3,
-    loanName: 'Home loan',
-    totalInterestRate: '4%',
-    loanType: 'Build Your dream house today ',
-    imageUrl: hl,
-  },
-  {
-    id: 4,
-    loanName: 'Vehicle Loan',
-    totalInterestRate: '7%',
-    loanType: 'Buy your first car today',
-    imageUrl: vl,
-  },
-];
+
+
+
 
 const LoanTypes = () => {
   const [showText, setShowText] = useState({});
@@ -46,7 +15,14 @@ const LoanTypes = () => {
       [id]: !prevState[id],
     }));
   };
-
+ 
+  const [cardsData ,setd]=useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/loans')
+      .then(response => response.json())
+      .then(result => setd(result))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []); 
   return (
     <div className="container">
       <div className="row">

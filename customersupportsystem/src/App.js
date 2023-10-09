@@ -9,9 +9,11 @@ import Loan from './components/LoanComponent/Loan';
 import Offer from './components/OfferComponent/Offer';
 import Footer from './layout/FooterComponent/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import UserProfile from './components/UserProfileComponent/UserProfile';
+import { AuthProvider } from './components/Auth';
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <div className="App">
         <header className="App-header">
@@ -24,12 +26,15 @@ function App() {
           <Route exact path="/card" element={<Card />} />
           <Route exact path="/loan" element={<Loan />} />
           <Route exact path="/offers" element={<Offer />} />
+          <Route exact path="/profile" element={<UserProfile/>}/>
           <Route path="/" element={<Home />} />
         </Routes>
         <Footer/>
       </div>
 
     </Router>
+
+    </AuthProvider>
   );
 }
 

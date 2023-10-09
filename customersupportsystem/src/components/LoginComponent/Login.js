@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-
+import { useAuth } from '../Auth';
 export default function Login() {
+    const [user,setUser]=useState({ email: '',
+    password: '',});
+    const auth=useAuth();
     let navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -13,7 +16,9 @@ export default function Login() {
     const [loginError, setLoginError] = useState('');
 
     const handleInputChange = (e) => {
+
         const { name, value } = e.target;
+        setUser({...user, [name]: value})
         setFormData({ ...formData, [name]: value });
     };
 
@@ -45,6 +50,7 @@ export default function Login() {
                 
                 // Check if a user with the provided email and full name exists
                 if (response.data.length > 0) {
+                    auth.login(response.data);
                     alert('Login Successful');
                     navigate("/dash"); // Redirect to dashboard page
                 } else {
