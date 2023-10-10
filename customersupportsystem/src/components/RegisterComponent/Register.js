@@ -8,16 +8,24 @@ export default function Register() {
     email: "",
     contactNumber: "",
     address: "",
-    dob: "",
     employmentStatus: "",
     employerDetails: "",
     panCard: "",
     password: "",
     ConfirmPassword: "",
+    creditScore:generateCreditScore()
   });
 
   const [errors, setErrors] = useState({});
-
+  function generateCreditScore() {
+    const minScore = 400;
+    const maxScore = 800;
+    
+    // Generate a random integer between minScore and maxScore
+    const randomScore = Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore;
+    
+    return randomScore;
+  }
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -46,16 +54,7 @@ export default function Register() {
       errors.address = "Address is required";
     }
 
-    if (!formData.dob.trim()) {
-      errors.dob = "Date of Birth is required";
-    } else {
-      const today = new Date();
-      const dobDate = new Date(formData.dob);
-
-      if (dobDate >= today) {
-        errors.dob = "Date of Birth should be before today";
-      }
-    }
+    
 
     if (!formData.employerDetails.trim()) {
       errors.employerDetails = "Employer Details is required";
@@ -89,13 +88,13 @@ export default function Register() {
     if (isFormValid) {
       const { ConfirmPassword, ...user } = formData;
       try {
-        await axios.post("http://localhost:9090/users", user);
+        await axios.post("http://localhost:9001/users", user);
         setFormData({
           fullName: "",
           email: "",
           contactNumber: "",
           address: "",
-          dob: "",
+          
           employmentStatus: "employed",
           employerDetails: "",
           panCard: "",
@@ -196,25 +195,7 @@ export default function Register() {
                 </span>
               )}
             </div>
-            <div className="mb-3">
-              <label htmlFor="dob" className="form-label text-left">
-                Date of Birth
-              </label>
-              <input
-                type="date"
-                className={`form-control ${errors.dob ? "is-invalid" : ""}`}
-                id="dob"
-                placeholder="enter your date of birth"
-                name="dob"
-                value={formData.dob}
-                onChange={(e) => handleInputChange(e)}
-              />
-              {errors.dob && (
-                <span className="error" style={{ color: "red" }}>
-                  {errors.dob}
-                </span>
-              )}
-            </div>
+            
             <div className="mb-3">
               <label
                 htmlFor="employmentStatus"

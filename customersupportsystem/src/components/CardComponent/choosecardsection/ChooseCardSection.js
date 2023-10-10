@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ChooseCardSection.css';
 import CreditCard from '../creditCard/CreditCard';
 import axios from 'axios';
-import creditCardData from './creditCardData.json';
+import creditCardData from './creditCard2.json';
 
 async function fetchUserData(userId, setFormData) {
   try {
@@ -12,7 +12,7 @@ async function fetchUserData(userId, setFormData) {
     setFormData({
       name: userData.fullName,
       email: userData.email,
-      phoneNumber: userData.contactNumber,
+      phoneNumber: userData.contactNumber
     });
   } catch (error) {
     console.error('Error fetching user data:', error);
@@ -25,13 +25,15 @@ function ChooseCardSection() {
   const [visibleCards, setVisibleCards] = useState([]);
   const [cardsToDisplay, setCardsToDisplay] = useState(6);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCardId, setSelectedCardId] = useState(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phoneNumber: '',
   });
 
-  const userId = "bed24550-8d24-4bd1-a057-785925730b52"; // Set the userId here
+  const userId = localStorage.getItem('userId'); // Replace with your own userId; // Set the userId here
   
   useEffect(() => {
     // Fetch user data when the component mounts
@@ -74,11 +76,19 @@ function ChooseCardSection() {
       try {
 
         // Then, submit the application
-        const applicationData = {
-          ...formData,
-          userId, // Include the userId in the application data
-        };
-        await axios.post(`http://localhost:9002/cardinfo/${userId}`, applicationData);
+        // const applicationData = {
+        //   ...formData,
+        //   selectedCard.id,
+        //   userId,
+        //   bgColor: selectedCard.bgColor,
+        //   cardName: selectedCard.cardname,
+        //   cardType: selectedCard.type,
+        //   cardId :  // Include the userId in the application data
+        // };
+        // console.log(selectedCard);
+        // console.log(applicationData);
+        console.log({...formData,"creditCardId":selectedCard["id"]});
+        await axios.post(`http://localhost:9002/cardinfo/${userId}`, {...formData,"creditCardId":selectedCard["id"]});
 
         setFormData({
           name: '',
@@ -112,7 +122,13 @@ function ChooseCardSection() {
   }, [selectedCardType]);
 
   const handleSelectCard = (card) => {
-    setSelectedCard(card);
+    setSelectedCardId(card.id);
+    setSelectedCard({
+      ...card,
+      bgColor: card.bgColor,
+      cardname: card.cardname,
+      type: card.type,
+    });
   };
 
   const handleShowMore = () => {
@@ -199,7 +215,7 @@ function ChooseCardSection() {
           {visibleCards.map((card, index) => (
             <div key={index} className="credit-card">
               <CreditCard
-                name={card.name}
+                cardname={card.cardname}
                 type={card.type}
                 number="XXXX XXXX XXXX 1234"
                 balance="$12,345"

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./LoanCalculator.css";
+import {useAuth} from '../../../../Auth/auth';
+import {Link} from 'react-router-dom';
 
 function LoanCalculator() {
   const location = useLocation();
@@ -15,7 +17,7 @@ function LoanCalculator() {
   const [showApplyNow, setShowApplyNow] = useState(true);
   const [showManageLoans, setShowManageLoans] = useState(false);
   const [userLoans, setUserLoans] = useState([]);
-  const userId = 204;
+  const userId = localStorage.getItem('userId'); // Replace with your own userId; // Set the userId here
   let interestRate = interest; // Change this to your desired interest rate
   const calculateTotalPayableAmount = () => {
     if (purpose && loanAmount && (loanTermYears || loanTermMonths)) {
@@ -26,6 +28,7 @@ function LoanCalculator() {
       setTotalPayableAmount(0);
     }
   };
+  const auth = useAuth();
 
   useEffect(() => {
     if (location.state && location.state.card) {
@@ -58,12 +61,12 @@ function LoanCalculator() {
 
     // Send a POST request to the server with the loanData
     try {
-      const response = await axios.post("http://localhost:8080/loan", loanData);
+      const response = await axios.post(`http://localhost:9003/loans/${userId}`, loanData);
       console.log("Loan data sent successfully:", response.data);
 
       // Fetch user loans after submitting the new loan
       const userLoanResponse = await axios.get(
-        "http://localhost:8080/userLoans?userId=204"
+        `http://localhost:9003/loans/${userId}`
       );
       setUserLoans(userLoanResponse.data);
 
@@ -144,13 +147,14 @@ function LoanCalculator() {
                     <option value="11">11 Months</option>
                   </select>
                 </div>
-                <button
+                {auth.user ? <button
                   type="submit"
                   style={{ background: "#652cb3" }}
                   className="btn btn-primary text-white"
                 >
                   Submit
-                </button>
+                </button>: <Link className="btn btn-primary" style={{ background: "#652cb3", color:"white" }} to="/login">Please Login first</Link>}
+              
               </div>
               <div className="col-md-6">
                 <div

@@ -2,7 +2,7 @@ import React from 'react';
 import './CreditCard.css';
 
 const CreditCard = ({
-  name,
+  cardname,
   number,
   balance,
   cardHolder,
@@ -10,12 +10,14 @@ const CreditCard = ({
   cvv,
   bgColor,
 }) => {
+  console.log(cardname,number,balance,cardHolder,expiry,cvv,bgColor);
+
   return (
     <div className="Creditcards" style={{ backgroundColor: bgColor }}>
       <div className="top">
         <div className="left">
-          <img src={`/creditcardimg/${name}.png`} alt={name} />
-          <h2>{name}</h2>
+          <img src={`/creditcardimg/${cardname}.png`} alt={cardname} />
+          <h2>{cardname}</h2>
         </div>
         <div className="right">
           <img src={`/creditcardimg/logo-removebg-preview.png`} alt="" className="right" />

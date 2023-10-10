@@ -14,10 +14,10 @@ const LoanTypes = () => {
 
   const [cardsData, setd] = useState([]);
   useEffect(() => {
-    // fetch('http://localhost:3000/loans')
-    //   .then(response => response.json())
-    //   .then(result => setd(result))
-    //   .catch(error => console.error('Error fetching data:', error));
+    fetch('http://localhost:3001/loans')
+      .then(response => response.json())
+      .then(result => setd(result))
+      .catch(error => console.error('Error fetching data:', error));
   }, []);
   return (
     <div className="container">
@@ -32,7 +32,7 @@ const LoanTypes = () => {
               />
               <div className="card-body">
                 <button
-                  className="btn btn-primary btn-block"
+                  className="btn btn-primary btn-block text-white"
                   onClick={() => toggleText(card.id)}
                   style={{ background: "#652cb3" }}
                 >
