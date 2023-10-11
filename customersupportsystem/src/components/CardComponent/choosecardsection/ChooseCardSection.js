@@ -2,7 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './ChooseCardSection.css';
 import CreditCard from '../creditCard/CreditCard';
 import axios from 'axios';
-import creditCardData from './creditCardData.json';
+import creditCardData from './creditCard2.json';
+
+async function fetchUserData(userId, setFormData) {
+  try {
+    const userResponse = await axios.get(`http://localhost:9001/users/${userId}`);
+    const userData = userResponse.data;
+
+    setFormData({
+      name: userData.fullName,
+      email: userData.email,
+      phoneNumber: userData.contactNumber
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
 
 function ChooseCardSection() {
   const [selectedCardType, setSelectedCardType] = useState('All');
@@ -10,34 +25,44 @@ function ChooseCardSection() {
   const [visibleCards, setVisibleCards] = useState([]);
   const [cardsToDisplay, setCardsToDisplay] = useState(6);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCardId, setSelectedCardId] = useState(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phoneNumber: '',
-  }); 
+  });
+
+  const userId = localStorage.getItem('userId'); // Replace with your own userId; // Set the userId here
+  
+  useEffect(() => {
+    // Fetch user data when the component mounts
+    fetchUserData(userId, setFormData);
+  }, [userId]);
+
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-};
+  };
   const validateForm = () => {
     const errors = {};
 
     if (!formData.name.trim()) {
-        errors.name = 'Full Name is required';
+      errors.name = 'Full Name is required';
     }
 
     if (!formData.email.trim()) {
-        errors.email = 'Email is required';
+      errors.email = 'Email is required';
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-        errors.email = 'Invalid email format';
+      errors.email = 'Invalid email format';
     }
 
     if (!formData.phoneNumber.trim()) {
-        errors.phoneNumber = 'Contact Number is required';
+      errors.phoneNumber = 'Contact Number is required';
     }
-    
+
     setErrors(errors);
 
     return Object.keys(errors).length === 0;
@@ -48,22 +73,33 @@ function ChooseCardSection() {
     const isFormValid = validateForm();
 
     if (isFormValid) {
-      const user = {
-        ...formData,
-    };
-        try {
-            await axios.post("http://localhost:8080/cardinfo", user);
-            setFormData({
-              name: '',
-              email: '',
-              phoneNumber: '',
-            });
-            
-        } catch (error) {
-            console.error('Error:', error);
-        }
+      try {
+
+        // Then, submit the application
+        // const applicationData = {
+        //   ...formData,
+        //   selectedCard.id,
+        //   userId,
+        //   bgColor: selectedCard.bgColor,
+        //   cardName: selectedCard.cardname,
+        //   cardType: selectedCard.type,
+        //   cardId :  // Include the userId in the application data
+        // };
+        // console.log(selectedCard);
+        // console.log(applicationData);
+        console.log({...formData,"creditCardId":selectedCard["id"]});
+        await axios.post(`http://localhost:9002/cardinfo/${userId}`, {...formData,"creditCardId":selectedCard["id"]});
+
+        setFormData({
+          name: '',
+          email: '',
+          phoneNumber: '',
+        });
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
-};
+  };
 
   // Sample real credit card data, you can replace this with your actual data
   const realCreditCards = creditCardData;
@@ -86,7 +122,13 @@ function ChooseCardSection() {
   }, [selectedCardType]);
 
   const handleSelectCard = (card) => {
-    setSelectedCard(card);
+    setSelectedCardId(card.id);
+    setSelectedCard({
+      ...card,
+      bgColor: card.bgColor,
+      cardname: card.cardname,
+      type: card.type,
+    });
   };
 
   const handleShowMore = () => {
@@ -127,40 +169,44 @@ function ChooseCardSection() {
         <div className="center-container">
           <div className="application-form">
             <p>Type: {selectedCard.type}</p>
-            <form onSubmit={(e)=> handleSubmit(e)}>
-            <label htmlFor="name">Full Name:</label>
-            <input 
-                type="text" 
-                id="name" 
-                placeholder="Enter your full name" 
-                name="name" 
-                value={formData.name} 
-                onChange={(e)=> handleInputChange(e)}
+            <form onSubmit={(e) => handleSubmit(e)}>
+              <label htmlFor="name">Full Name:</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                name="name"
+                value={formData.name}
+                onChange={(e) => handleInputChange(e)}
                 className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                />
-            {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-            <label htmlFor="email">Email:</label>
-            <input 
-               type="email" 
-               id="email" 
-               placeholder="Enter your email address" 
-               name="email" 
-               value={formData.email} 
-               onChange={(e)=> handleInputChange(e)} />
-            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-            <label htmlFor="phone">Phone Number:</label>
-            <input 
-               type="tel" 
-               id="phone" 
-               placeholder="Enter your phone number" 
-               name="phoneNumber" 
-               value={formData.phoneNumber} 
-               onChange={(e)=> handleInputChange(e)}/>
-            {errors.phoneNumber && <span className="invalid-feedback">{errors.phoneNumber}</span>}   
-            <button className="apply-button">Submit Application</button>
-            <button className="apply-button" onClick={handleCancel}>
-              Cancel
-            </button>
+              />
+              {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                name="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange(e)}
+                className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+              />
+              {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+              <label htmlFor="phone">Phone Number:</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Enter your phone number"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={(e) => handleInputChange(e)}
+                className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
+              />
+              {errors.phoneNumber && <span className="invalid-feedback">{errors.phoneNumber}</span>}
+              <button className="apply-button">Submit Application</button>
+              <button className="apply-button" onClick={handleCancel}>
+                Cancel
+              </button>
             </form>
           </div>
         </div>
@@ -169,7 +215,7 @@ function ChooseCardSection() {
           {visibleCards.map((card, index) => (
             <div key={index} className="credit-card">
               <CreditCard
-                name={card.name}
+                cardname={card.cardname}
                 type={card.type}
                 number="XXXX XXXX XXXX 1234"
                 balance="$12,345"
@@ -197,7 +243,7 @@ function ChooseCardSection() {
           )}
         </div>)
       }
-      
+
     </section>
   );
 }
